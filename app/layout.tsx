@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Poppins } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "iTrackStats",
@@ -40,14 +42,26 @@ export const metadata: Metadata = {
   },
 };
 
+const fontSans = Poppins({
+  subsets: ["latin-ext"],
+  weight: ["400", "700"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body className={`${fontSans} font-sans tracking-wider`}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }
