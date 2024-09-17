@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "iTrackInvest",
+  title: "iTrackStats",
   description: "Plataforma innovadora dedicada a proporcionar estadísticas deportivas en tiempo real.",
   keywords: [],
   authors: [{ name: "iTrackStats" }],
