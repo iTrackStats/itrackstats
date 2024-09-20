@@ -24,7 +24,7 @@ export default function SignUpForm() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Nombre</Label>
+            <Label htmlFor="name">Nombre Completo</Label>
             <Input id="name" placeholder="Juan Pérez" required />
           </div>
           <div className="space-y-2">
