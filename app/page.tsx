@@ -37,6 +37,7 @@ export default function page() {
           <ModeToggle />
         </nav>
       </header>
+
       <main className="flex-1">
         <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 xl:py-48 relative">
           <Image
