@@ -6,7 +6,16 @@ interface ApiSdk {
   database: Databases;
 }
 
-const api: { sdk: ApiSdk | null; provider: () => ApiSdk } = {
+interface Api {
+  sdk: ApiSdk | null;
+  provider: () => ApiSdk;
+  auth: {
+    getCurrentSession: () => Promise<any>;
+    deleteCurrentSession: () => Promise<any>;
+  };
+}
+
+const api: Api = {
   sdk: null,
 
   provider: () => {
@@ -20,6 +29,17 @@ const api: { sdk: ApiSdk | null; provider: () => ApiSdk } = {
 
     api.sdk = { account, database };
     return api.sdk;
+  },
+
+  auth: {
+    getCurrentSession: () => {
+      let account = api.provider().account;
+      return account.get();
+    },
+
+    deleteCurrentSession: () => {
+      return api.provider().account.deleteSession("current");
+    },
   },
 };
 
