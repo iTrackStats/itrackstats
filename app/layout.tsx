@@ -1,8 +1,7 @@
+import { AuthProvider } from "@/contexts/AuthProvider";
 import type { Metadata } from "next";
-import "./globals.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Poppins } from "next/font/google";
-import { AuthProvider } from "@/context/UserContext";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "iTrackStats",
@@ -63,14 +62,9 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head />
         <body
-          className={`${fontSans} font-sans tracking-wider min-h-screen antialiased`}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
-            <AuthProvider>{children}</AuthProvider>
-          </ThemeProvider>
+          className={`${fontSans} min-h-screen bg-[#17182E] font-sans tracking-wider !text-white antialiased`}
+        >
+          <AuthProvider>{children}</AuthProvider>
         </body>
       </html>
     </>

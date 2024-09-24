@@ -1,5 +1,10 @@
-import { Account, Client as Appwrite, Databases } from "appwrite";
 import { env } from "@/lib/env.config";
+import {
+  Account,
+  Client as Appwrite,
+  Databases,
+  OAuthProvider,
+} from "appwrite";
 
 interface ApiSdk {
   account: Account;
@@ -12,10 +17,11 @@ interface Api {
   auth: {
     getCurrentSession: () => Promise<any>;
     deleteCurrentSession: () => Promise<any>;
+    signupWithGoogle: () => Promise<any>;
   };
 }
 
-const api: Api = {
+const api: any = {
   sdk: null,
 
   provider: () => {
@@ -39,6 +45,16 @@ const api: Api = {
 
     deleteCurrentSession: () => {
       return api.provider().account.deleteSession("current");
+    },
+
+    signupWithGoogle: () => {
+      return api
+        .provider()
+        .account.createOAuth2Session(
+          OAuthProvider.Google,
+          `${env.appDomain}/`,
+          `${env.appDomain}/`,
+        );
     },
   },
 };
