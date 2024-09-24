@@ -7,6 +7,9 @@ export const env = {
   bucketId: process.env.BUCKET_ID || "",
   endpoint: process.env.NEXT_PUBLIC_ENDPOINT || "",
 
+  // Appwrite collections
+  devTicketsId: process.env.NEXT_PUBLIC_DEV_TICKETS_ID || "",
+
   // App
   appDomain: process.env.NEXT_PUBLIC_APP_DOMAIN || "",
 };

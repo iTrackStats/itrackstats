@@ -57,6 +57,14 @@ const api: any = {
         );
     },
   },
+
+  tickets: {
+    getAll: async (extraParams: string[]) => {
+      return api
+        .provider()
+        .database.listDocuments(env.databaseId, env.devTicketsId, extraParams);
+    },
+  },
 };
 
 export default api;
