@@ -1,6 +1,7 @@
 "use client";
 
 import api from "@/lib/appwrite";
+import { Tickets } from "@/types/appwrite";
 import {
   createContext,
   ReactNode,
@@ -9,18 +10,9 @@ import {
   useState,
 } from "react";
 
-// Tipo de datos del usuario
-interface Tickets {
-  title: string;
-  description: string;
-  priority: string;
-  due_date: string;
-  responsable: string;
-}
-
 interface TicketsContextProps {
-  tickets: Tickets | null;
-  loading: boolean;
+  allTickets: Tickets | null;
+  loadingTickets: boolean;
 }
 
 // Crear el contexto
@@ -30,25 +22,26 @@ const TicketsContext = createContext<TicketsContextProps | undefined>(
 
 // Proveedor del contexto
 export const TicketsProvider = ({ children }: { children: ReactNode }) => {
-  const [tickets, setTickets] = useState<Tickets | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [allTickets, setTickets] = useState<Tickets | null>(null);
+  const [loadingTickets, setLoadingTickets] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const tickets = await api.tickets.geAll();
+        const tickets = await api.tickets.getAll();
         setTickets(tickets);
       } catch (error) {
         setTickets(null);
+        console.error(error);
       } finally {
-        setLoading(false);
+        setLoadingTickets(false);
       }
     };
     fetchTickets();
   }, []);
 
   return (
-    <TicketsContext.Provider value={{ tickets, loading }}>
+    <TicketsContext.Provider value={{ allTickets, loadingTickets }}>
       {children}
     </TicketsContext.Provider>
   );

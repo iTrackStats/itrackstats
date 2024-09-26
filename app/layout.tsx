@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/contexts/AuthProvider";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,9 +48,11 @@ export const metadata: Metadata = {
   },
 };
 
-const fontSans = Poppins({
-  subsets: ["latin-ext"],
-  weight: ["400", "700"],
+const fontSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -62,7 +65,9 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <head />
         <body
-          className={`${fontSans} min-h-screen bg-[#17182E] font-sans tracking-wider !text-white antialiased`}
+          className={cn(
+            "min-h-screen bg-[#17182E] font-sans !text-base tracking-wider text-white antialiased",
+          )}
         >
           <AuthProvider>{children}</AuthProvider>
         </body>

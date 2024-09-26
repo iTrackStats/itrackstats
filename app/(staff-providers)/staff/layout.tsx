@@ -1,4 +1,5 @@
 "use client";
+import { StaffSidebar } from "@/components/navigation/StaffSidebar";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useRouter } from "next/navigation";
 import { BarLoader } from "react-spinners";
@@ -21,7 +22,16 @@ export default function RootLayout({
     if (!user?.labels.includes("staff")) {
       router.push("/not-allowed");
     } else {
-      return <>{children}</>;
+      return (
+        <>
+          <div className="h-screen bg-white text-black dark:bg-black dark:text-white">
+            {" "}
+            <StaffSidebar>
+              <div className="w-full p-4">{children}</div>
+            </StaffSidebar>
+          </div>
+        </>
+      );
     }
   }
 }

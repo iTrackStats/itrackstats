@@ -2,7 +2,11 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
-  content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./components/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {
@@ -52,6 +56,8 @@ const config: Config = {
           "text-dark": "#e9ecef",
           "workspace-light": "#f8f9fa",
           "workspace-dark": "#0a0908",
+          "skeleton-light": "#dee2e6",
+          "skeleton-dark": "#363A3D",
         },
       },
       borderRadius: {

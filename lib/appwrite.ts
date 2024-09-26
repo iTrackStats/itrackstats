@@ -11,16 +11,6 @@ interface ApiSdk {
   database: Databases;
 }
 
-interface Api {
-  sdk: ApiSdk | null;
-  provider: () => ApiSdk;
-  auth: {
-    getCurrentSession: () => Promise<any>;
-    deleteCurrentSession: () => Promise<any>;
-    signupWithGoogle: () => Promise<any>;
-  };
-}
-
 const api: any = {
   sdk: null,
 
@@ -55,6 +45,12 @@ const api: any = {
           `${env.appDomain}/`,
           `${env.appDomain}/`,
         );
+    },
+  },
+
+  users: {
+    findById: (id: string) => {
+      return api.provider().account.get(id);
     },
   },
 
